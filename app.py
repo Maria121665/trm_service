@@ -3,12 +3,12 @@ import requests
 
 app = Flask(__name__)
 
-@app.get("/usd")
+@app.route("/usd")
 def usd():
-    data = requests.get("https://tasa-dolar-venezuela.vercel.app/api").json()
-    return jsonify({"usd": data["promedio"]})
+    data = requests.get("https://s3.amazonaws.com/dolartoday/data.json").json()
+    return jsonify({"usd": data["USD"]["promedio"]})
 
-@app.get("/eur")
+@app.route("/eur")
 def eur():
-    data = requests.get("https://tasa-dolar-venezuela.vercel.app/api/euro").json()
-    return jsonify({"eur": data["promedio"]})
+    data = requests.get("https://s3.amazonaws.com/dolartoday/data.json").json()
+    return jsonify({"eur": data["EUR"]["promedio"]})
